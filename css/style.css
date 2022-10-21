@@ -16,3 +16,25 @@ body{
   margin:0;
   color: white;
 }
+.show_details{
+  margin: 20px;
+}
+
+/*addNewProduct.php css file start*/
+.pro{
+  position: relative;
+  left: 40%;
+  margin: 40px 0;
+}
+.pro h3{
+  display: flex;
+  align-items: center;
+}
+.btn{
+  color: black;
+  border:none;
+  border-radius: 10px;
+  font-weight: bold;
+  padding: 10px 20px;
+}
+/*end*/

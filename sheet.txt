@@ -1,0 +1,29 @@
+three tables
+1. users
+2. products
+3. order
+
+
+users
+===============
+id  Name email   gender  address mobileNo password(encrypt format) Role
+
+products
+=========
+id Name detail price
+
+order
+==============
+id  product-name product-detail  employee-name    date
+
+
+Form Validation
+---------------
+1. required
+2. minlength maxlength
+3. pattern
+4. pattern with title
+
+pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,16}$"
+title = "The password should be of minimum length of eight alpha-numeric characters having at least one lowercase letter, an uppercase letter, special character, and a digit."
+

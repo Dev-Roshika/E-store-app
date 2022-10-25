@@ -38,3 +38,15 @@ body{
   padding: 10px 20px;
 }
 /*end*/
+
+.required-field::before{
+  content: "*";
+  color:red;
+}
+
+.main{
+  display: flex;
+  justify-content: center;
+  padding: 250px;
+  font-size: larger;
+}

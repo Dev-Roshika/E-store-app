@@ -1,39 +1,44 @@
 <?php
 include "Dash_header.php";
 ?>
-<!-- 
-<style>
-    .pro{
-        position: relative;
-        left: 40%;
-        margin: 40px 0;
-    }
-    .pro h3{
-        display: flex;
-        align-items: center;
-    }
-    .btn{
-        color: black;
-        border:none;
-        border-radius: 10px;
-        font-weight: bold;
-        padding: 10px 20px;
-    }
-</style> -->
+
+<?php  include_once "../connection/authenticate.php"; 
+?>
 
 <div class="pro">
     <h3>Add a new product</h3>    
-    <form action="#">
+    <form action="<?php echo htmlentities($_SERVER['PHP_SELF']);?>" method="POST">
         <label for="name">Name</label>
             <input type="text" name ="name"/> <br><br>
         <label for="details">Details</label>
             <textarea name="details" column="5" row ="4"></textarea><br><br>
         <label for="price">Price</label>
             <input type="text" name="price"/><br><br>
-        <input type="submit" class = "btn" value = "Add" style = "background-color:#2980b9;position:relative;left:5%;">
+        <input type="submit" name = "add" class = "btn" value = "Add" style = "background-color:#2980b9;position:relative;left:5%;">
     </form>
 </div>
 
+
 <?php
+    if(isset($_POST['add'])){
+        $name = $_POST['name'];
+        $detail = $_POST['details'];
+        $price = $_POST['price'];
+    
+    $sql = "INSERT INTO PRODUCTS (name,detail,price) values('$name','$detail','$price');";
+    $result = mysqli_query($con,$sql);
+    if($result)
+?>  {
+    <script>
+        alert("Data is inserted successfully.");
+    </script>
+    <?php header("location:Avail_Products.php"); ?>
+    } else{
+        <?php echo "Error, try again..."; ?>
+    }
+
+
+<?php
+    }
 include "footer.php";
 ?>

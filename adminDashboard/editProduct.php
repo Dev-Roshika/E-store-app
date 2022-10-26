@@ -2,38 +2,54 @@
 include "Dash_header.php";
 ?>
 
-<style>
-    .pro{
-        position: relative;
-        left: 40%;
-        margin: 40px 0;
+<?php  include_once "../connection/authenticate.php"; 
+$sql = "SELECT * FROM PRODUCTS;";
+$result = mysqli_query($con,$sql);
+$id = $_GET['id'];
+
+while($row=mysqli_fetch_array($result)){ 
+    if($row[0]==$id){
+        $name = $row[1];
+        $detail = $row[2];
+        $price = $row[3];
     }
-    .pro h3{
-        display: flex;
-        align-items: center;
-    }
-    .btn{
-        color: white;
-        border:none;
-        border-radius: 10px;
-        font-weight: bold;
-        padding: 10px 20px;
-    }
-</style>
+}    
+?>
+
+
 
 <div class="pro">
     <h3>Edit a product</h3>    
-    <form action="#">
+    <form method = "post" action="<?php echo htmlentities($_SERVER['PHP_SELF']);?>">
         <label for="name">Name</label>
-            <input type="text" name ="name"/> <br><br>
+            <input type="text" name ="name" value = "<?php echo $name ;?>"/> <br><br>
         <label for="details">Details</label>
-            <textarea name="details" column="5" row ="4"></textarea><br><br>
+            <textarea name="details" column="5" row ="4"><?php echo $detail ;?></textarea><br><br>
         <label for="price">Price</label>
-            <input type="text" name="price"/><br><br>
-        <input type="submit" class = "btn" value = "Update" style = "background-color:#2980b9;position:relative;left:5%;">
+            <input type="text" name="price" value = "<?php echo $price ;?>"/><br><br>
+        <input type="submit" name="update" class = "btn" value = "Update" style = "background-color:#2980b9;position:relative;left:5%;color:white;">
     </form>
 </div>
 
 <?php
+    if(isset($_POST['update'])){
+        $name = $_POST['name'];
+        $detail = $_POST['details'];
+        $price = $_POST['price'];
+    
+    $sql = "UPDATE products SET name='$name',detail='$detail',price='$price' WHERE id = '$id';";
+    $result = mysqli_query($con,$sql);
+    if($result)
+?>  {
+    <script>
+        alert("Data is inserted successfully.");
+    </script>
+    <?php header("location:Avail_Products.php"); ?>
+    } else{
+        <?php echo "Error, try again..."; ?>
+    }
+
+<?php
+    }
 include "footer.php";
 ?>

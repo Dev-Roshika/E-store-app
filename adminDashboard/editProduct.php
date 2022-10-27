@@ -5,8 +5,13 @@ include "Dash_header.php";
 <?php  include_once "../connection/authenticate.php"; 
 $sql = "SELECT * FROM PRODUCTS;";
 $result = mysqli_query($con,$sql);
-$id = $_GET['id'];
 
+if(isset($_GET['id'])){
+    $id = $_GET['id'];
+} else{
+    $id = 0;
+}
+echo $id;
 while($row=mysqli_fetch_array($result)){ 
     if($row[0]==$id){
         $name = $row[1];
@@ -22,7 +27,7 @@ while($row=mysqli_fetch_array($result)){
     <h3>Edit a product</h3>    
     <form method = "post" action="<?php echo htmlentities($_SERVER['PHP_SELF']);?>">
         <label for="name">Name</label>
-            <input type="text" name ="name" value = "<?php echo $name ;?>"/> <br><br>
+            <input type="text" name ="name" value = "<?php echo isset($name)?$name:"None" ;?>"/> <br><br>
         <label for="details">Details</label>
             <textarea name="details" column="5" row ="4"><?php echo $detail ;?></textarea><br><br>
         <label for="price">Price</label>
@@ -36,20 +41,27 @@ while($row=mysqli_fetch_array($result)){
         $name = $_POST['name'];
         $detail = $_POST['details'];
         $price = $_POST['price'];
-    
+        
     $sql = "UPDATE products SET name='$name',detail='$detail',price='$price' WHERE id = '$id';";
     $result = mysqli_query($con,$sql);
-    if($result)
-?>  {
-    <script>
-        alert("Data is inserted successfully.");
-    </script>
-    <?php header("location:Avail_Products.php"); ?>
+
+    if(!$result)
+  {
+    ?>
+    <script type="text/javascript">
+        alert('Error');
+	</script>
     } else{
-        <?php echo "Error, try again..."; ?>
+    <script type="text/javascript">
+		alert('Data successfully inserted.');
+    </script>
     }
+<?php    
+    }
+    header("Location:Avail_Products.php");
+}
+?>
 
 <?php
-    }
 include "footer.php";
 ?>

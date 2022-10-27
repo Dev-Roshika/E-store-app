@@ -27,7 +27,7 @@ while($row=mysqli_fetch_array($result)){
     <h3>Edit a product</h3>    
     <form method = "post" action="<?php echo htmlentities($_SERVER['PHP_SELF']);?>">
         <label for="name">Name</label>
-            <input type="text" name ="name" value = "<?php echo isset($name)?$name:"None" ;?>"/> <br><br>
+            <input type="text" name ="name" value = "<?php echo $name ; ?>"/> <br><br>
         <label for="details">Details</label>
             <textarea name="details" column="5" row ="4"><?php echo $detail ;?></textarea><br><br>
         <label for="price">Price</label>
@@ -51,15 +51,15 @@ while($row=mysqli_fetch_array($result)){
     <script type="text/javascript">
         alert('Error');
 	</script>
-    } else{
+  <?php  } else{ ?>
     <script type="text/javascript">
-		alert('Data successfully inserted.');
+		alert('Data successfully updated.');
     </script>
-    }
-<?php    
+<?php
+  }    
     }
     header("Location:Avail_Products.php");
-}
+
 ?>
 
 <?php

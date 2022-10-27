@@ -3,7 +3,7 @@
             <td style= "border:1px solid white;"><a href="#">Admin Name</a></td>
             <td style= "border:1px solid white;"><a href="Avail_Products.php">Products</a></td>
             <td style= "border:1px solid white;"><a href="#">Employees</a></td>
-            <td style= "border:1px solid white;"><a href="#">Logout</a></td>
+            <td style= "border:1px solid white;"><a href="../logout.php">Logout</a></td>
         </tr>
 </table>
 

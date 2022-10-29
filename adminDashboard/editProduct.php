@@ -9,7 +9,7 @@ $result = mysqli_query($con,$sql);
 if(isset($_GET['id'])){
     $id = $_GET['id'];
 } else{
-    $id = 0;
+    $id = -1;
 }
 echo $id;
 while($row=mysqli_fetch_array($result)){ 
@@ -41,25 +41,11 @@ while($row=mysqli_fetch_array($result)){
         $name = $_POST['name'];
         $detail = $_POST['details'];
         $price = $_POST['price'];
-        
-    $sql = "UPDATE products SET name='$name',detail='$detail',price='$price' WHERE id = '$id';";
-    $result = mysqli_query($con,$sql);
-
-    if(!$result)
-  {
-    ?>
-    <script type="text/javascript">
-        alert('Error');
-	</script>
-  <?php  } else{ ?>
-    <script type="text/javascript">
-		alert('Data successfully updated.');
-    </script>
-<?php
-  }    
-    }
+              
+    $sql = "UPDATE PRODUCTS SET name='$name',detail='$detail',price='$price' WHERE id = '$id';";
+    $result = mysqli_query($con,$sql);   
     header("Location:Avail_Products.php");
-
+    }
 ?>
 
 <?php

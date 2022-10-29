@@ -30,7 +30,7 @@ $result = mysqli_query($con,$sql);
     $No_Count = 1;
     while($row=mysqli_fetch_array($result)){
     ?>
-
+    
     <tr>
         <td><?php echo $No_Count;   $No_Count++;?></td>
         <td><?php echo $row[1];?></td>
@@ -38,7 +38,7 @@ $result = mysqli_query($con,$sql);
         <td><?php echo $row[3];?></td>
         <td>
             <button type="button" class = "btn" style="background-color:rgb(105, 143, 247)" onclick="window.location.href = 'showProduct.php?id=<?php echo $row[0];?>'">Show</button>
-            <button type="button" class = "btn" style="background-color:rgb(102, 81, 243)" onclick="window.location.href = 'editProduct.php?id=<?php echo $row[0];?>'">Edit</button>
+            <button type="button" class = "btn" style="background-color:rgb(102, 81, 243)"  onclick="window.location.href = 'editProduct.php?id=<?php echo $row[0];?>'">Edit</button>
             <button type="button" class = "btn" style="background-color:rgb(243, 81, 81)" onclick="window.location.href = 'deleteProduct.php?id=<?php echo $row[0];?>'">Delete</button>
         </td>
     </tr>

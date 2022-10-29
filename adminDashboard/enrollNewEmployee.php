@@ -1,5 +1,4 @@
 <?php
-session_start();
 include "Dash_header.php";
 ?>
 
@@ -29,6 +28,7 @@ include "Dash_header.php";
 </div>
 
 <?php
+$name = ""; $email = ""; $gender = ""; $address = ""; $mobileNo = ""; $pwd = ""; $role = "";
     if(isset($_POST['enroll'])){
         $name = $_POST['name'];
         $email = $_POST['email'];
@@ -36,11 +36,10 @@ include "Dash_header.php";
         $address = $_POST['address'];
         $mobileNo = $_POST['mobileNo'];
         $pwd = md5($_POST['password']);
-        $_SESSION['role'] = "Employee";
-        $role = $_SESSION['role'];
+        $role = "Employee";
          
          $sql = "INSERT INTO users (name,email,gender,address,mobile_no,password,role) VALUES ('$name','$email','$gender','$address','$mobileNo','$pwd','$role');";
-         $result = mysqli_query($con,$sql);
+         mysqli_query($con,$sql);
          header("location:Avail_Employees.php");
 
     //     if($result){
@@ -53,7 +52,7 @@ include "Dash_header.php";
     //         echo "</script>";
     //     }<?php echo htmlentities($_SERVER['PHP_SELF']);
     }
-?>
+    ?>
 
 <?php 
 include "footer.php";

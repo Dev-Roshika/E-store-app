@@ -17,7 +17,7 @@
         $result = mysqli_query($con,$sql);
         while($row=mysqli_fetch_array($result)){
     ?>
-        <form action="OrderSuccess.php" method = "post">
+        <form action="OrderSuccess.php?customerID=<?php $_SESSION['CustomerId'];?>" method = "post">
         <tr>
             <td>Product Name:</td>
             <td><?php echo $row['name']; 

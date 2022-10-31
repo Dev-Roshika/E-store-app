@@ -9,8 +9,6 @@ if($_GET['Status'] == "visible"){
 }
 ?>
 
-
-
 <div class= "main">
     <h1>Welcome to Customer Dashboard!</h1>
 </div>

@@ -2,7 +2,7 @@
         <tr>
             <td style= "border:1px solid white;"><a href="#">Employee Name</a></td>
             <td style= "border:1px solid white;"><a href="myOrders.php">My Orders</a></td>
-            <td style= "border:1px solid white;"><a href="#">Logout</a></td>
+            <td style= "border:1px solid white;"><a href="../logout.php">Logout</a></td>
         </tr>
 </table>
 

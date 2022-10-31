@@ -4,7 +4,7 @@ include "Dash_header.php";
 
 <?php
     include_once "../connection/authenticate.php"; 
-
+    $id = -1;
     if(isset($_GET['id']))
         $id = $_GET['id'];
     

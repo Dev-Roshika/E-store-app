@@ -12,7 +12,7 @@
 <body>
     <div class = "box-head"><h1>Customer Registration</h1></div>
     <div class="box">
-        <form action="" method = "post"> 
+        <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method = "post"> 
                     Name: <span class ="required-field"></span>
                     <input type="text" name="name" required/> <br><br>
                     Email: <span class ="required-field"></span>
@@ -24,7 +24,7 @@
                         <option value="female">Female</option>
                     </select><br><br>
                     Address: <span class ="required-field"></span>
-                    <textarea name="addresss"  cols="20" rows="1" required></textarea><br><br>
+                    <textarea name="address"  cols="20" rows="1" required></textarea><br><br>
                     Mobile No: <span class ="required-field"></span>
                     <input type="tel" name="mobile_no" placeholder="077123456" pattern="[0-9]{10}" title = "Only 10 digits are allowed" required/> <br><br>
                     Password: <span class ="required-field"></span>
@@ -36,12 +36,6 @@
 </html>
 
 <?php
-    $name = "";
-    $email = "";
-    $gender = "";
-    $address = "";
-    $mobile_no = 0000000000;
-    $password = "";
     if(isset($_POST['SignUp'])){
         $name = $_POST['name'];
         $email = $_POST['email'];
@@ -50,11 +44,21 @@
         $mobile_no = $_POST['mobile_no'];
         $password = md5($_POST['password']);
 
-        $_SESSION['customer_name'] = $name;
-        $_SESSION['customer_email'] = $email;
-        $_SESSION['customer_password'] = $password;
-    }
-    $_SESSION['role'] = "Customer";
+        $role = "Customer";
     
-    $sql = "INSERT INTO users values (name,email,gender,address,mobile_no,password,role) ($name,$email,$gender,$address,$mobile_no,$password,$_SESSION['role'])";
+    $sql = "INSERT INTO USERS  (name,email,gender,address,mobile_no,password,role) VALUES('$name','$email','$gender','$address','$mobile_no','$password','$role')";
+    $result = mysqli_query($con,$sql);
+    if($result){
+        echo  "<script>";
+        echo "alert('Data inserted successfully.')";
+        echo  "</script>";
+        header("Location:index.php?role=$role");
+    }
+    else {
+        echo  "<script>";
+        echo "alert('Data is not inserted successfully.')";
+        echo  "</script>";
+        header("Location:index.php");
+    }
+    }
 ?>

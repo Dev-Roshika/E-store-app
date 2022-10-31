@@ -4,7 +4,7 @@ include "Dash_header.php";
 
 <?php include_once "../connection/authenticate.php"; 
 
-$sql = "SELECT * FROM USERS;";
+$sql = "SELECT * FROM USERS WHERE role = 'Employee';";
 $result = mysqli_query($con,$sql);
 ?>
 

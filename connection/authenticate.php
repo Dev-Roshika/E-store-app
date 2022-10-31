@@ -9,7 +9,4 @@
     if($con->connect_errno){
         die("Connection failed : " . $con->connect_error);
     }
-    else{
-        echo("Successfully connected.");
-    }
 ?>

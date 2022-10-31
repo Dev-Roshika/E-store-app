@@ -23,13 +23,11 @@ include "Dash_header.php";
 
 
 <?php  include_once "../connection/authenticate.php"; 
-$sql = "SELECT * FROM PRODUCTS;";
+$sql = "SELECT * FROM USERS;";
 $result = mysqli_query($con,$sql);
-
+$id = -1;
 if(isset($_GET['id'])){
     $id = $_GET['id'];
-} else{
-    $id = 0;
 }
 echo $id;
 while($row=mysqli_fetch_array($result)){
@@ -46,7 +44,7 @@ while($row=mysqli_fetch_array($result)){
 
 <div class="pro">
     <h3>Edit a product</h3>    
-    <form action="<?php echo  htmlentities($_SERVER['PHP_SELF']); ?>">
+    <form action="<?php echo  htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
     <label for="name">Name</label>
             <input type="text" name ="name" value = "<?php echo $name ; ?>"/> <br><br>
         <label for="email">Email</label>
@@ -58,11 +56,29 @@ while($row=mysqli_fetch_array($result)){
             </select> <br><br>
         <label for="mobileNo">Mobile No:</label>
             <input type="text" name="mobileNo" value = "<?php echo $mobile ; ?>"> <br><br>
-        <label for="Address">Details</label>
-            <textarea name="details" column="5" row ="1" style="width:170.4px;height:22px;"><?php echo $address ; ?></textarea><br><br>
-        <input type="submit" class = "btn" value = "Update" style = "background-color:#2980b9;position:relative;left:5%;">
+        <label for="Address">Address</label>
+            <textarea name="address" column="5" row ="1" style="width:170.4px;height:22px;"><?php echo $address ; ?></textarea><br><br>
+        <input type="hidden" name = "id" value = "<?php echo $_GET['id'];?>">
+        <input type="submit" class = "btn" name = "update" value = "Update" style = "background-color:#2980b9;position:relative;left:5%;">
     </form>
 </div>
+
+<?php
+    if(isset($_POST['update'])){
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+        $gender = $_POST['gender'];
+        $mobile = $_POST['mobileNo'];
+        $address = $_POST['address'];
+        $id = $_POST['id'];
+        echo "<script>";
+        echo "alert('Clicked')";
+        echo "</script>";
+        $sql = "UPDATE USERS SET name = '$name',email='$email',gender='$gender',address='$address',mobile_no='$mobile' WHERE id = '$id'; ";
+        $result = mysqli_query($con,$sql);
+        header("Location:Avail_Employees.php");
+    }
+?>
 
 <?php
 include "footer.php";

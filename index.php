@@ -5,6 +5,9 @@ $_SESSION['admin_email'] = "admin@gmail.com";
 $_SESSION['admin_password'] = md5("1234");
 ?>
 
+<?php 
+    include_once "connection/authenticate.php";
+?>
 
 
 <!DOCTYPE html>
@@ -25,6 +28,7 @@ $_SESSION['admin_password'] = md5("1234");
                     <input type="email" name="email"/> <br><br>
                     Password
                     <input type="password" name="password"   /><br><br>
+                    <input type="hidden" name = "role" value = "<?php $_GET['role']; ?>">
                     <input type="submit" name = "login" value = "login" class = "btn" style = "background-color:green;color:white;">
                 </div>
             </div> <!-- End Box -->
@@ -40,12 +44,31 @@ $_SESSION['admin_password'] = md5("1234");
 
 
 <?php
-$pass = "";$email = "";
+$pass = "";$email = "";$role = "";
     if(isset($_POST["login"])){
         $email = $_POST['email'];
         $pass = md5($_POST['password']);
-    }
-    if(($pass == $_SESSION['admin_password']) && ($email == $_SESSION['admin_email'])){
-        header("location:adminDashboard/adminDashboard.php");
-    }
+        
+        $sql = "SELECT * from USERS WHERE email = '$email' and password = '$pass';";
+        $result = mysqli_query($con,$sql);        
+        $row=mysqli_fetch_array($result);
+
+        if(!empty($row)){
+            $_SESSION['username'] = $row['name'];
+            $_SESSION['userid'] = $row['id'];
+            if(isset($row['role'])){
+                $role = $row['role'];
+            }
+            if($role == "Customer"){
+                header("location:customerDashboard/customerDashboard.php");
+            }
+            if($role == "Employee"){
+                header("location:employeeDashboard/employeeDashboard.php");
+            }
+        }
+}
+
+if(($pass == $_SESSION['admin_password']) && ($email == $_SESSION['admin_email'])){
+    header("location:adminDashboard/adminDashboard.php");
+}
 ?>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 28, 2022 at 04:12 PM
+-- Generation Time: Nov 01, 2022 at 08:26 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.3.28
 
@@ -31,9 +31,20 @@ CREATE TABLE `orders` (
   `id` int(11) NOT NULL,
   `product_name` varchar(100) NOT NULL,
   `product_detail` varchar(100) NOT NULL,
+  `product_price` decimal(10,2) NOT NULL,
   `employee_name` varchar(100) NOT NULL,
-  `date` date NOT NULL
+  `customer_id` int(11) NOT NULL,
+  `date` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `product_name`, `product_detail`, `product_price`, `employee_name`, `customer_id`, `date`) VALUES
+(26, 'Bag', 'School bag', '1950.00', 'Employee01', 9, '31.10.2022'),
+(27, 'Bag', 'School bag', '1950.00', 'Employee02', 9, '31.10.2022'),
+(28, 'Bottle', 'School bottle', '1100.00', 'Employee01', 11, '31.10.2022');
 
 -- --------------------------------------------------------
 
@@ -53,7 +64,8 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `detail`, `price`) VALUES
-(9, 'Bag', 'School bag', '2700.00');
+(10, 'Bag', 'School bag', '1950.00'),
+(11, 'Bottle', 'School bottle', '1100.00');
 
 -- --------------------------------------------------------
 
@@ -77,8 +89,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `gender`, `address`, `mobile_no`, `password`, `role`) VALUES
-(0, 'Employee01', 'employee01@gmail.com', 'm', 'Jaffna', '01', 'd41d8cd98f00b204e9800998ecf8427e', 'Employee'),
-(1, 'Employee01', 'employee02@gmail.com', 'F', 'Colombo', '0123456789', 'e02pwd', 'Employee');
+(9, 'Customer01', 'customer01@gmail.com', 'm', 'fefj', '4344444444', '8eb130ff04d2c72b77d46e9e60aa85b4', 'Customer'),
+(10, 'Employee01', 'employee01@gmail.com', 'm', 'Jaffna', '0111444444', '7296c3c11b30f5c6e5acbe2b54758b24', 'Employee'),
+(11, 'Customer02', 'customer02@gmail.com', 'f', 'Ragama', '0444444441', 'f384e78496e68184244901efe4d2ccbc', 'Customer'),
+(12, 'Employee02', 'employee02@gmail.com', 'f', 'Vavniya', '03457812345', 'a0a13d72c1e373a0ae525d1f1645d7c4', 'Employee');
 
 --
 -- Indexes for dumped tables
@@ -110,13 +124,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

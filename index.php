@@ -27,7 +27,10 @@ $_SESSION['admin_password'] = md5("1234");
                     Email
                     <input type="email" name="email"/> <br><br>
                     Password
-                    <input type="password" name="password"   /><br><br>
+                    <input type="password" name="password"  
+                    pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,16}$"
+ title = "The password should be of minimum length of eight alpha-numeric characters having at least one lowercase letter, an uppercase letter, special character, and a digit."
+                    /><br><br>
                     <input type="hidden" name = "role" value = "<?php $_GET['role']; ?>">
                     <input type="submit" name = "login" value = "login" class = "btn" style = "background-color:green;color:white;">
                 </div>

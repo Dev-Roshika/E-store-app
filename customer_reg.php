@@ -28,7 +28,10 @@
                     Mobile No: <span class ="required-field"></span>
                     <input type="tel" name="mobile_no" placeholder="077123456" pattern="[0-9]{10}" title = "Only 10 digits are allowed" required/> <br><br>
                     Password: <span class ="required-field"></span>
-                    <input type="password" name="password" required/><br><br>
+                    <input type="password" name="password"
+                    pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,16}$"
+ title = "The password should be of minimum length of eight alpha-numeric characters having at least one lowercase letter, an uppercase letter, special character, and a digit."
+                    required/><br><br>
                     <input type="submit" value = "Sign Up" name = "SignUp" class = "btn" style = "background-color:green;color:white;">
         </form>
     </div>

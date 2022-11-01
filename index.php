@@ -1,8 +1,9 @@
 <?php
-    session_start();
+session_start();
 //admin details
+$_SESSION['admin_name'] = "This";
 $_SESSION['admin_email'] = "admin@gmail.com";
-$_SESSION['admin_password'] = md5("1234");
+$_SESSION['admin_password'] = md5("Admin1@%");
 ?>
 
 <?php 
@@ -69,9 +70,8 @@ $pass = "";$email = "";$role = "";
                 header("location:employeeDashboard/employeeDashboard.php");
             }
         }
-}
-
-if(($pass == $_SESSION['admin_password']) && ($email == $_SESSION['admin_email'])){
+    if(($pass == $_SESSION['admin_password']) && ($email == $_SESSION['admin_email'])){
     header("location:adminDashboard/adminDashboard.php");
+    }
 }
 ?>
